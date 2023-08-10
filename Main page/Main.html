@@ -4,19 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Main page/Main.css">
-    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+    <title>Gift Geyser</title>
 </head>
 <body>
+    <div class="wrapper">
 <div id="container">
+
     <div id="navBar">
-        <div >
-            <button class="navs" id="AboutUs"></button>
-            <img class="navs" id="logo">
-            <img class="navs" id="pfp">
+            <button class="navs" id="AboutUs">About Us</button>
+            <link id="logo" type="icon" >
+            <img  src="/Imgs/facebook_cover_photo_1-removebg-preview.png" class="navs" id="logo">
+            <a href=""><img src="/Imgs/female-avatar.gif" class="navs" id="pfp"></a>
+            
+    </div>
+    
+</div>    
+<div class="container1">
+    <div id="Mymodal2" style="display: none;" class="modal">
+        <div class="modal-content">
+        <span class="close2">&times;</span>
+        <label for="howMuch">How Much Will u Donate</label>
+        <input type="number" id="howMuch" name="howMuch"><br>
+        <button onclick="help()">Confirm</button>
         </div>
     </div>
-    <div id="content"></div>
-    <div id="footer"></div>
+    <div id="sortBars">
+            <div> <button id="AddPost">New Post</button></div>
+            <div id="Mymodal" style="display: none;" class="modal">
+                <div class="modal-content">
+                <span class="close">&times;</span>
+                <label for="PostnName">Post name</label>
+                <input type="text" id="PostnName" name="PostnName"><br>
+                <label for="UserName">User Name</label>
+                <input id="UserName" name="UserName" type="text">
+                <label for="imageSource">image source</label>
+                <input id="imageSource" name="imageSource" type="text">
+                <label for="description" >description</label>
+                <textarea name="description" id="description">description</textarea>
+                </div>
+            </div>
+    </div>
+
+    <div id="cards">
+
+    </div>
+</div>
+    
+
+    <div class="push"></div>
+</div>
+<div class="footer">
+    <h3 id="line">
+        <p></p><br>
+        <p></p><br>
+        <p></p><br>
+        <p></p>
+    </h3>
+    <h3 id="line">
+        <p></p><br>
+        <p></p><br>
+        <p></p><br>
+        <p></p>
+    </h3>
+    <h3 id="line">
+        <p></p><br>
+        <p></p><br>
+        <p></p><br>
+        <p></p>
+    </h3>
+    
 </div>
 </body>
 <script src="/Main page/Main.js"></script>

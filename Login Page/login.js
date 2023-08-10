@@ -2,7 +2,25 @@ var i = 0
 function generateId() {
     return i++
 }
-var emptyArray = []
+var emptyArray = [{
+    mail: "Mouhib@gmail.com@gmail.com",
+    pass: "mouhib123",
+    name: "mouhib",
+    id: 1,
+    balance: 200
+},{
+    mail: "jihed@gmail.com",
+    pass: "jihed123",
+    name: "jihed",
+    id: 2,
+    balance: 500
+},{
+    mail: "balkis@gmail.com",
+    pass: "balkis123",
+    name: "balkis",
+    id:3,
+    balance: 700
+}]
 localStorage.setItem("Sign-Ups", JSON.stringify(emptyArray))
 var emptyArray2 = []
 localStorage.setItem("Logins", JSON.stringify(emptyArray2))
@@ -38,12 +56,13 @@ $("#sign").click(function () {
 var UserMails = []
 var UserPassword = []
 $("#addAccount").click(function () {
-    user = {
+    var user = {
         mail: $("#e-mail-sign").val(),
         pass: $("#pass-sign").val(),
         name: $("#name").val(),
         source: $("#icon").val(),
-        id: generateId()
+        id: generateId(),
+        balance: $("#balance-sign").val()
     }
     var Sign_Ups = JSON.parse(localStorage.getItem("Sign-Ups"))
     Sign_Ups.push(user)
@@ -64,7 +83,8 @@ $("#login").on('click', function () {
     var passlog = $("#pass-log").val()
     user = {
         mail: $("#e-mail-log").val(),
-        pass: $("#pass-log").val()
+        pass: $("#pass-log").val(),
+        balance:$("#balance-log").val()
     }
     var Sign_Ups = JSON.parse(localStorage.getItem("Sign-Ups"))
     var Log_in = JSON.parse(localStorage.getItem("Logins"))
@@ -72,7 +92,7 @@ $("#login").on('click', function () {
         const element = Sign_Ups[i];
         if (element.mail == maillog && element.pass == passlog){
           Log_in.push(user)  
-        }
+        }}
     
     
     localStorage.setItem("Logins", JSON.stringify(Log_in))
@@ -85,4 +105,4 @@ $("#login").on('click', function () {
         }
 
     }
-}})
+})
