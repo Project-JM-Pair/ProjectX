@@ -146,8 +146,10 @@ body {
     transform:translate(-50%, -50%);
     border-color: rgb(41, 42, 42);
     text-shadow: 8px 8px 10px #0000008c;
-    background-image: url("/Imgs/sun.jpg");
-    border-radius:50px
+    /* background-image: url("/Imgs/sun.jpg"); */
+    border-radius:50px;
+    /* background-color: transparent; */
+    background-color: rgb(67, 67, 67,.3);
   }
   
 h1 {
@@ -206,7 +208,7 @@ input {
 fieldset{
     border-radius: 7px;
     /* height: 14vh; */
-    top: ;
+    /* top: ; */
 }
 
 .finishbtn{
