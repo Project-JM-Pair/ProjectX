@@ -222,7 +222,7 @@ function loadCards() {
                     <div class="project-details"> 
                         <div class="amount-pledged">${card.amountPledged} Dollars</div>
                     </div>
-                    <div>
+                    <div class="btn" > 
                         <button onclick="set('${card.username}')" class="support" >support This Post</button>
                     </div>
                 </div>`);
@@ -230,5 +230,20 @@ function loadCards() {
     }
 }
 loadCards();
+function searchCards() {
+    
+    var searchInput = document.getElementById('searchBar').value.toLowerCase();
+
+   
+    var cards = JSON.parse(localStorage.getItem('cards')) || [];
+
+    
+    var filteredCards = cards.filter(function(card) {
+        return card.name.toLowerCase().includes(searchInput);
+    });
+
+    
+}
+document.getElementById('searchBar').addEventListener('input', searchCards);
 
 
