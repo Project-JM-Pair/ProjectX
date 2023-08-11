@@ -1,4 +1,7 @@
 // localStorage.setItem("inNeed",JSON.stringify(""))
+if (!localStorage.getItem('cards')) {
+    localStorage.setItem('cards', JSON.stringify([]));
+}
 var dfoo = 
 [
 {mail:"Mouhib@gmail.com@gmail.com",pass:"mouhib123",name:"mouhib",source:"https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg",id:"1",balance:"200"},
@@ -80,7 +83,7 @@ $(".container1").append(`
             </div>
             <h3 class="project-title">${e.name}</h3>
             <div class="project-details"> 
-                <div class="amount-pledged">${e.balance} CA$ engagÃ©s</div>
+                <div class="amount-pledged">${e.balance} Dollar</div>
          
             </div><div>
             <button onclick="set('${e.name}')" class="support" >support This Post</button>
@@ -123,15 +126,22 @@ var filtered=filter(allUsers,function(element,i){
         })
 console.log(filtered)
  filtered[0].balance =Number(filtered[0].balance)+Number(balancechange)
- allUsers.push(filtered[0])
+//  allUsers.push(filtered[0])
 console.log(filtered[0])
  localStorage.removeItem("Sign-Ups")
- localStorage.setItem("Sign-Ups",JSON.stringify(allUsers))
+ 
     /*remove from helper*/
 var helper = JSON.parse(localStorage.getItem("Logins"))
-helper[0]= Number(helper[0].balance)-Number(balancechange)
+var user_name=helper[0].name
+each(allUsers,function(element,i){
+if(element.name===user_name){
+    element.balance-Number(balancechange)
+}
+})
+localStorage.setItem("Sign-Ups",JSON.stringify(allUsers))
+helper[0].balance= Number(helper[0].balance)-Number(balancechange)
 helper.push(helper[0])
-console.log(helper[0])
+console.log(helper)
 localStorage.removeItem("Logins")
 localStorage.setItem("Logins",JSON.stringify(helper))
 }
@@ -141,6 +151,10 @@ localStorage.setItem("Logins",JSON.stringify(helper))
 var modal = document.getElementById("Mymodal");
 $("#AddPost").click(function() {
     modal.style.display = "block";
+})
+$("#addPostBtn").on('click', function() {
+    modal.style.display = "none";
+    return addCard()
 })
 var span = document.getElementsByClassName("close")[0];
 span.onclick = function(){
@@ -164,3 +178,57 @@ window.onclick = function(event) {
       modal2.style.display = "none";
     }
 }
+
+
+function addCard(){
+    var desc = $("#description").val()
+    var username = $("#UserName").val()
+    var image = $("#imageSource").val()
+    var newCard = {
+        desc: desc,
+        username: username,
+        image: image,
+        amountPledged: 0
+    };
+    var cards = JSON.parse(localStorage.getItem('cards'));
+    cards.push(newCard);
+    localStorage.setItem('cards', JSON.stringify(cards));
+    $(".container1").append(`
+        <div class="card">
+                <div>
+                    <img class="project-image" alt="" src="${newCard.image}">
+                </div>
+                <h3 class="project-title">${newCard.username}</h3>
+                <h5 class="project-desc">${newCard.desc}</h5>
+                <div class="project-details"> 
+                    <div class="amount-pledged">${newCard.amountPledged} Dollars</div>
+             
+                </div><div>
+                <button onclick="set('${newCard.username}')" class="support" >support This Post</button>
+                </div>
+        </div>`)
+}
+function loadCards() {
+    var cards = JSON.parse(localStorage.getItem('cards'));
+    if (cards) {
+        cards.forEach(function(card) {
+            $(".container1").append(`
+                <div class="card">
+                    <div>
+                        <img class="project-image" alt="" src="${card.image}">
+                    </div>
+                    <h3 class="project-title">${card.username}</h3>
+                    <h5 class="project-desc">${card.desc}</h5>
+                    <div class="project-details"> 
+                        <div class="amount-pledged">${card.amountPledged} Dollars</div>
+                    </div>
+                    <div>
+                        <button onclick="set('${card.username}')" class="support" >support This Post</button>
+                    </div>
+                </div>`);
+        });
+    }
+}
+loadCards();
+
+
