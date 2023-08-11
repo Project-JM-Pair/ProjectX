@@ -235,15 +235,16 @@ function searchCards() {
     var searchInput = document.getElementById('searchBar').value.toLowerCase();
 
    
-    var cards = JSON.parse(localStorage.getItem('cards')) || [];
+    var cards = JSON.parse(localStorage.getItem('cards')) 
 
     
     var filteredCards = cards.filter(function(card) {
-        return card.name.toLowerCase().includes(searchInput);
+        return card.username.toLowerCase().includes(searchInput);
     });
 
     
 }
 document.getElementById('searchBar').addEventListener('input', searchCards);
+//couldn't make this work*/
 
 
